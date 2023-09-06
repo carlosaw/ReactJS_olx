@@ -8,9 +8,11 @@ import { PageContainer, PageTitle, ErrorMessage } from '../../components/MainCom
 const Page = () => {
   const api = useApi();
 
+  const [name, setName] = useState('');
+  const [stateLoc, setStateLoc] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [rememberPassword, setRememberPassword ] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [disabled, setDisabled] = useState(false);
   const [error, setError] = useState('');
 
@@ -31,7 +33,7 @@ const Page = () => {
 
   return (
     <PageContainer>
-      <PageTitle>Login</PageTitle>
+      <PageTitle>Cadastro</PageTitle>
       <PageArea>
         {error &&
           <ErrorMessage>{error}</ErrorMessage>
