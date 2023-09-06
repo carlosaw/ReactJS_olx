@@ -30,10 +30,23 @@ export const PageArea = styled.div`
           border-radius: 3px;
           outline: 0;
           transition: all ease .4s;
-
           &:focus {
             border: 1px solid #333;
             color: #333;
+          }
+        }
+        button {
+          background-color: #0089FF;
+          border: 0;
+          outline: 0;
+          padding: 5px 10px;
+          border-radius: 4px;
+          color: #FFF;
+          font-size: 15px;
+          cursor: pointer;
+
+          &:hover {
+            opacity: .8;
           }
         }
       }
