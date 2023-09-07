@@ -55,8 +55,29 @@ const OlxAPI = {
       {email, password}
     );
     return json;
-    //return {error: 'Funcionalidade imcompleta'};
-  }
+  },
+
+  register: async (name, email, password, stateLoc) => {
+    const json = await apiFetchPost(
+      '/user/signup',
+      {name, email, password, state:stateLoc}
+    );
+    return json;
+  },
+
+  getStates:async () => {
+      const json = await apiFetchGet(
+        '/states'
+      );
+      return json.states;
+  },
+
+  getCategories:async () => {
+    const json = await apiFetchGet(
+      '/categories'
+    );
+    return json.categories;
+}
 };
 
 export default () => OlxAPI;
