@@ -4,12 +4,14 @@ import { SearchArea, PageArea } from './styled';
 import useApi from '../../helpers/OlxAPI';
 
 import { PageContainer } from '../../components/MainComponents';
+import AdItem from "../../components/partials/AdItem";
 
 const Page = () => {
   const api = useApi();
 
-  const {stateList, setStateList} = useState([]);
+  const [stateList, setStateList] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [adList, setAddList] = useState([]);
 
   useEffect(() => {
     const getStates = async () => {
@@ -17,6 +19,7 @@ const Page = () => {
       setStateList(slist);
     }
     getStates();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -25,6 +28,19 @@ const Page = () => {
       setCategories(cats);
     }
     getCategories();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    const getRecentAds = async () => {
+      const json = await api.getAds({
+        sort:'desc',
+        limit:8
+      });
+      setAddList(json.ads);
+    }
+    getRecentAds();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -44,7 +60,7 @@ const Page = () => {
           </div>
           <div className="categoryList">
             {categories.map((i, k)=>
-              <Link key={k} to="" className="categoryItem">
+              <Link key={k} to={`/ads?cat=${i.slug}`} className="categoryItem">
                 <img src={i.img} alt="" />
                 <span>{i.name}</span>
               </Link> 
@@ -54,7 +70,15 @@ const Page = () => {
       </SearchArea>
       <PageContainer>
         <PageArea>
-          ...
+          <h2>Anúncios recentes</h2>
+          <div className="list">
+            {adList.map((i, k) => 
+              <AdItem key={k} data={i} />
+            )}
+          </div>
+          <Link to="/ads" className="seeAllLink">Ver todos</Link>
+          <hr/>
+          Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas raízes podem ser encontradas em uma obra de literatura latina clássica datada de 45 AC. Richard McClintock, um professor de latim do Hampden-Sydney College na Virginia, pesquisou uma das mais obscuras palavras em latim, consectetur.
         </PageArea>
       </PageContainer>
     </>
