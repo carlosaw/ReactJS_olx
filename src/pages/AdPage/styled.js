@@ -98,11 +98,24 @@ export const OthersArea = styled.div`
     font-size: 20px;
   }
 
-  /* .list {
+  .list {
     display: flex;
-
+    flex-wrap: wrap;
+ 
     .aditem {
-      width: 150px;
+      width: 25%;
     }
-  } */
+  } 
+`;
+
+export const BreadChumb = styled.div`
+  font-size: 13px;
+  margin-top: 20px;
+
+  a {
+    display: inline-block;
+    margin: 0px 5px;
+    text-decoration: underline;
+    color: #000;
+  }
 `;
