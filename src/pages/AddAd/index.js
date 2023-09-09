@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useHistory } from 'react-router-dom';
 import MaskedInput from "react-text-mask";
 import { createNumberMask } from "text-mask-addons";
 import { PageArea } from './styled';
@@ -9,7 +10,8 @@ import { PageContainer, PageTitle, ErrorMessage } from '../../components/MainCom
 const Page = () => {
   const api = useApi();
   const fileField = useRef();
-
+  const history = useHistory();
+  
   const [categories, setCategories] = useState([]);
 
   const [title, setTitle] = useState('');
@@ -35,14 +37,42 @@ const Page = () => {
     e.preventDefault();
     setDisabled(true);
     setError('');
-    /*
-    const json = await api.login(email, password);
-    if(json.error) {
-      setError(json.error);
+    let errors = [];
+
+    if(!title.trim()) {
+      errors.push('Preencha o campo Título');
+    }
+    if(!category) {
+      errors.push('Preencha o campo Categoria!');
+    }
+    // Se não teve erros Pega informações adicionais
+    if(errors.length === 0) {
+      const fData = new FormData();
+      fData.append('title', title);
+      fData.append('price', price);
+      fData.append('priceneg', priceNegotiable);
+      fData.append('desc', desc);
+      fData.append('cat', category);
+
+      // Se tiver arquivos selecionados
+      if(fileField.current.files.length > 0) {
+        for(let i=0; i<fileField.current.files.length; i++) {// Loop nos arqs.
+          fData.append('img', fileField.current.files[i]);// Pega imagens
+        }
+      }
+      // Faz a requisição
+      const json = await api.addAd(fData);
+      if(!json.error) {
+        history.push(`/add/${json.id}`);
+        return;
+      } else {
+        setError(json.error);
+      }
+
     } else {
-      doLogin(json.token, rememberPassword);
-      window.location.href = '/';
-    }*/
+      setError(errors.join("\n"));
+    }
+
     setDisabled(false);
   }
 

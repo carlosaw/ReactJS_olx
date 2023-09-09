@@ -60,7 +60,7 @@ const Page = () => {
                 <Slide>
                   {adInfo.images.map((img, k) =>
                     <div key={k} className="each-slide">
-                      <img src={img} alt="" />
+                      <img src={img} alt="0" height={300} />
                     </div>
                   )}
                 </Slide>
