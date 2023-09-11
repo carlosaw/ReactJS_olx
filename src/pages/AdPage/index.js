@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom/cjs/react-router-dom.min";
+// @ts-ignore
+import { Link, useParams } from "react-router-dom";
 import { Slide } from "react-slideshow-image";
 import { PageArea, Fake, OthersArea, BreadChumb } from './styled';
 import useApi from '../../helpers/OlxAPI';
