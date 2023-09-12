@@ -13,7 +13,9 @@ const Page = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  
   const [stateList, setStateList] = useState([]);
+
   const [disabled, setDisabled] = useState(false);
   const [error, setError] = useState('');
 

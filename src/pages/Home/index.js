@@ -11,7 +11,7 @@ const Page = () => {
 
   const [stateList, setStateList] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [adList, setAddList] = useState([]);
+  const [adList, setAdList] = useState([]);
 
   useEffect(() => {
     const getStates = async () => {
@@ -37,7 +37,7 @@ const Page = () => {
         sort:'desc',
         limit:8
       });
-      setAddList(json.ads);
+      setAdList(json.ads);
     }
     getRecentAds();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -49,7 +49,7 @@ const Page = () => {
         <PageContainer>
           <div className="searchBox">
             <form method="GET" action="/ads">
-              <input type="text" placeholder="O que você procura?" />
+              <input type="text" name="q" placeholder="O que você procura?" />
               <select name="state">
                 {stateList.map((i, k)=>
                   <option key={k} value={i.name}>{i.name}</option>  
