@@ -62,7 +62,7 @@ margin-top:20px;
     h2 {
         margin-top: 0;
         font-size: 18px;
-        text-align: center;
+        padding-left: 15px;
     }
 
     .listWarning {
