@@ -22,26 +22,50 @@ const Page = () => {
   const [cat, setCat] = useState(query.get('cat') != null ? query.get('cat') : '');
   const [state, setState] = useState(query.get('state') != null ? query.get('state') : '');
 
+  const [adsTotal, setAdsTotal] = useState(0);
   const [stateList, setStateList] = useState([]);
   const [categories, setCategories] = useState([]);
   const [adList, setAdList] = useState([]);
+
+  const [pageCount, setPageCount] =useState(0);
+  // eslint-disable-next-line
+  const [currentPage, setCurrentPage] =useState(1);
 
   const [resultOpacity, setResultOpacity] = useState(1);
   const [loading, setLoading] = useState(false);
 
   const getAdsList = async () => {
     setLoading(true);
+    let offset = 0;
+    offset = (currentPage-1) * 2;
     const json = await api.getAds({
       sort: 'desc',
-      limit: 9,
+      limit: 3,
       q,
       cat,
-      state
+      state,
+      offset
     });
     setAdList(json.ads);
+    setAdsTotal(json.total);
     setResultOpacity(1);
     setLoading(false);
   }
+
+  useEffect(() => {
+    if(adList.length > 0) {
+      setPageCount( Math.ceil( adsTotal / adList.length ) );
+    } else {
+      setPageCount( 0 );
+    }   
+    // eslint-disable-next-line
+  }, [adsTotal]);
+
+  useEffect(()=>{
+    setResultOpacity(0.3);
+    getAdsList();
+    // eslint-disable-next-line
+  }, [currentPage]);
 
   // Para mudar a query no browser
   useEffect(() => {
@@ -65,6 +89,7 @@ const Page = () => {
     }
     timer = setTimeout(getAdsList, 2000);
     setResultOpacity(0.3);
+    setCurrentPage(1);
     // eslint-disable-next-line
   }, [q, cat, state]);
 
@@ -85,6 +110,11 @@ const Page = () => {
     getCategories();
     // eslint-disable-next-line
   }, []);
+
+  let pagination = [];
+  for(let i=1; i<=pageCount; i++) {
+    pagination.push(i);
+  }
 
   return (
     <PageContainer>
@@ -125,7 +155,7 @@ const Page = () => {
         <div className="rightSide">
           <h2>Resultados</h2>
 
-          {loading &&
+          {loading && adList.length === 0 &&
             <div className='listWarning'>Carregando...</div>
           }
           {!loading && adList.length === 0 &&
@@ -134,6 +164,12 @@ const Page = () => {
           <div className='list' style={{opacity:resultOpacity}}>
             {adList.map((i,k) => 
               <AdItem key={k} data={i} />
+            )}
+          </div>
+
+          <div className='pagination'>
+            {pagination.map((i,k) => 
+              <div onClick={()=>setCurrentPage(i)} className={i===currentPage?'pagItem active':'pagItem'} key={k}>{i}</div>
             )}
           </div>
         </div>
