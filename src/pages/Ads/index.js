@@ -4,15 +4,16 @@ import { PageArea } from './styled';
 import useApi from '../../helpers/OlxAPI';
 
 import { PageContainer } from '../../components/MainComponents';
-// eslint-disable-next-line
-import AdItem from '../../components/partials/AdItem';
 
+import AdItem from '../../components/partials/AdItem';
+import Pagination from '../../components/Pagination';
 let timer;
 
 const Page = () => {
   const api = useApi();
   const history = useHistory();
-
+  const LIMIT = 3;
+  
   const useQueryString = () => {
     return new URLSearchParams(useLocation().search);
   }
@@ -22,11 +23,13 @@ const Page = () => {
   const [cat, setCat] = useState(query.get('cat') != null ? query.get('cat') : '');
   const [state, setState] = useState(query.get('state') != null ? query.get('state') : '');
 
-  //const [adsTotal, setAdsTotal] = useState(0);
+  const [adsTotal, setAdsTotal] = useState(0);
   const [stateList, setStateList] = useState([]);
   const [categories, setCategories] = useState([]);
   const [adList, setAdList] = useState([]);
 
+  const [offset, setOffset] = useState(0);
+  
   //const [pageCount, setPageCount] =useState(0);
   // eslint-disable-next-line
   //const [currentPage, setCurrentPage] =useState(1);
@@ -40,14 +43,14 @@ const Page = () => {
     //offset = (currentPage-1) * 2;
     const json = await api.getAds({
       sort: 'desc',
-      limit: 3,
+      limit: LIMIT,
       q,
       cat,
       state,
-      //offset
+      offset
     });
     setAdList(json.ads);
-    //setAdsTotal(json.total);
+    setAdsTotal(json.total);
     setResultOpacity(1);
     setLoading(false);
   }
@@ -92,7 +95,7 @@ const Page = () => {
     setResultOpacity(0.3);
     //setCurrentPage(1);
     // eslint-disable-next-line
-  }, [q, cat, state]);
+  }, [q, cat, state, offset]);
 
   useEffect(() => {
     const getStates = async () => {
@@ -167,6 +170,19 @@ const Page = () => {
               <AdItem key={k} data={i} />
             )}
           </div>
+
+          {adsTotal &&
+          <div  className="pagination">
+            <Pagination 
+              limit={LIMIT} 
+              total={setAdsTotal} 
+              offset={offset}
+              setOffset={setOffset}
+            />
+          </div>
+            
+          }
+          
 
           {/* <div className='pagination'>
             {pagination.map((i,k) => 

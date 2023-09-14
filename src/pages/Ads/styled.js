@@ -81,11 +81,8 @@ margin-top:20px;
 
     }
 
-    .pagination {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 10px 0;
+    /* .pagination {
+        display: inline-block;
 
         .pagItem {
             width: 30px;
@@ -104,8 +101,8 @@ margin-top:20px;
         }
         .pagItem.active {
             background-color: #CCC;
-        }
-    }
+        } 
+    } */
 
 }
 `;
