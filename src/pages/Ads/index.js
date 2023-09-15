@@ -12,7 +12,7 @@ let timer;
 const Page = () => {
   const api = useApi();
   const history = useHistory();
-  const LIMIT = 3;
+  const LIMIT = 6;
   
   const useQueryString = () => {
     return new URLSearchParams(useLocation().search);
