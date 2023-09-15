@@ -6,7 +6,7 @@ const MAX_LEFT = (MAX_ITEMS - 1) / 2;
 
 const Pagination = ({ limit, total, offset, setOffset}) => {
   const current = offset ? (offset / limit) + 1 : 1;
-  // eslint-disable-next-line
+ 
   const pages = Math.ceil(total / limit);
   const first = Math.max(current - MAX_LEFT, 1);
 
