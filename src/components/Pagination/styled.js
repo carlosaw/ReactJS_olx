@@ -10,8 +10,27 @@ export const PageArea = styled.div`
     border-color: green;
   }
 
+  .preview,
+  .next {    
+    button {
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #EEE;
+      cursor: pointer;
+      border: 1px solid #999;
+      color: #333;
+      border-radius: 3px;
+
+      &:hover {
+        border: 1px solid green;
+      }
+    }   
+  }
+
   li {
-    margin-left: 5px;
+    margin: 0px 5px;
 
     button {
       width: 30px;
@@ -21,7 +40,7 @@ export const PageArea = styled.div`
       justify-content: center;
       background-color: #EEE;
       cursor: pointer;
-      border: 1px solid #CCC;
+      border: 1px solid #999;
       color: #333;
 
       &:hover {

@@ -18,29 +18,28 @@ const Page = () => {
     return new URLSearchParams(useLocation().search);
   }
   const query = useQueryString();
-
+ 
+  // Pesquisa
   const [q, setQ] = useState(query.get('q') != null ? query.get('q') : '');
   const [cat, setCat] = useState(query.get('cat') != null ? query.get('cat') : '');
   const [state, setState] = useState(query.get('state') != null ? query.get('state') : '');
-
-  const [adsTotal, setAdsTotal] = useState(0);
+  
+  // Pega listas
   const [stateList, setStateList] = useState([]);
   const [categories, setCategories] = useState([]);
   const [adList, setAdList] = useState([]);
 
+  // Paginação
+  const [adsTotal, setAdsTotal] = useState(0);
   const [offset, setOffset] = useState(0);
-  
-  //const [pageCount, setPageCount] =useState(0);
-  // eslint-disable-next-line
-  //const [currentPage, setCurrentPage] =useState(1);
 
+  // Loading e opcidade
   const [resultOpacity, setResultOpacity] = useState(1);
   const [loading, setLoading] = useState(false);
 
+  // Pega lista de anúncios
   const getAdsList = async () => {
     setLoading(true);
-    //let offset = 0;
-    //offset = (currentPage-1) * 2;
     const json = await api.getAds({
       sort: 'desc',
       limit: LIMIT,
@@ -55,21 +54,12 @@ const Page = () => {
     setLoading(false);
   }
 
-  // useEffect(() => {
-  //   if(adList.length > 0) {
-  //     setPageCount( Math.ceil( adsTotal / adList.length ) );
-  //   } else {
-  //     setPageCount( 0 );
-  //   }   
-  //   // eslint-disable-next-line
-  // }, [adsTotal]);
-
+  // Monitora opacidade
   useEffect(()=>{
     setResultOpacity(0.3);
     getAdsList();
     // eslint-disable-next-line
   }, []);
-  //}, [currentPage]);
 
   // Para mudar a query no browser
   useEffect(() => {
@@ -83,42 +73,38 @@ const Page = () => {
     if (state) {
       queryString.push(`state=${state}`);
     }
-
     history.replace({
       search: `?${queryString.join('&')}`
     });
-
     if(timer) {
       clearTimeout(timer);
     }
     timer = setTimeout(getAdsList, 2000);
     setResultOpacity(0.3);
-    //setCurrentPage(1);
     // eslint-disable-next-line
   }, [q, cat, state, offset]);
 
+  // Monitora mudanças em estado
   useEffect(() => {
     const getStates = async () => {
       const slist = await api.getStates();
       setStateList(slist);
     }
     getStates();
+    setOffset(0);
     // eslint-disable-next-line
-  }, []);
+  }, [state]);
 
+  // Monitora mudanças em categorias
   useEffect(() => {
     const getCategories = async () => {
       const cats = await api.getCategories();
       setCategories(cats);
     }
     getCategories();
+    setOffset(0);
     // eslint-disable-next-line
-  }, []);
-
-  // let pagination = [];
-  // for(let i=1; i<=pageCount; i++) {
-  //   pagination.push(i);
-  // }
+  }, [cat]);
 
   return (
     <PageContainer>
@@ -172,23 +158,16 @@ const Page = () => {
           </div>
 
           {adsTotal &&
-          <div  className="pagination">
-            <Pagination 
-              limit={LIMIT} 
-              total={setAdsTotal} 
-              offset={offset}
-              setOffset={setOffset}
-            />
-          </div>
-            
+            <div  className="pagination">
+              <Pagination 
+                limit={LIMIT} 
+                total={setAdsTotal} 
+                offset={offset}
+                setOffset={setOffset}
+              />
+            </div>            
           }
-          
 
-          {/* <div className='pagination'>
-            {pagination.map((i,k) => 
-              <div onClick={()=>setCurrentPage(i)} className={i===currentPage?'pagItem active':'pagItem'} key={k}>{i}</div>
-            )}
-          </div> */}
         </div>
       </PageArea>
     </PageContainer>
