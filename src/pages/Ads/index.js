@@ -25,15 +25,16 @@ const Page = () => {
   const [state, setState] = useState(query.get('state') != null ? query.get('state') : '');
   
   // Pega listas
+  const [adsTotal, setAdsTotal] = useState(0);
   const [stateList, setStateList] = useState([]);
   const [categories, setCategories] = useState([]);
   const [adList, setAdList] = useState([]);
 
   // Paginação
-  const [adsTotal, setAdsTotal] = useState(0);
+  
   const [offset, setOffset] = useState(0);
 
-  // Loading e opcidade
+  // Loading e opacidade
   const [resultOpacity, setResultOpacity] = useState(1);
   const [loading, setLoading] = useState(false);
 
@@ -109,6 +110,7 @@ const Page = () => {
   return (
     <PageContainer>
       <PageArea>
+        
         <div className="leftSide">
           <form method="GET">
             <input
@@ -156,7 +158,7 @@ const Page = () => {
               <AdItem key={k} data={i} />
             )}
           </div>
-
+          
           {adsTotal &&
             <div  className="pagination">
               <Pagination 
