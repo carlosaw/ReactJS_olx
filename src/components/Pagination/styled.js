@@ -7,7 +7,7 @@ export const PageArea = styled.div`
   list-style: none;
 
   .active {
-    border-color: green;
+    border-bottom: 2px solid green;
   }
 
   .preview,
@@ -19,12 +19,18 @@ export const PageArea = styled.div`
       justify-content: center;
       background-color: #EEE;
       cursor: pointer;
-      border: 1px solid #999;
+      border: 0;
       color: #333;
       border-radius: 3px;
 
+      img {
+        width: 12px;
+        opacity: 0.5;
+        margin: 0px 10px;
+      }
+      
       &:hover {
-        border: 1px solid green;
+        background-color: #dbdbdb;
       }
     }   
   }
@@ -40,11 +46,12 @@ export const PageArea = styled.div`
       justify-content: center;
       background-color: #EEE;
       cursor: pointer;
-      border: 1px solid #999;
+      border: 0;
       color: #333;
+      font-size: 15px;
 
       &:hover {
-        border: 1px solid green;
+        background-color: #dbdbdb;
       }
     }
   }

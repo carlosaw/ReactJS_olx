@@ -1,6 +1,9 @@
 import React from "react";
 import { PageArea } from "./styled";
 import { PageContainer } from '../../components/MainComponents';
+import Next from '../../assets/images/arrowNext.png';
+import Prev from '../../assets/images/arrowPrev.png';
+
 const MAX_ITEMS = 9;
 const MAX_LEFT = (MAX_ITEMS - 1) / 2;
 
@@ -25,7 +28,7 @@ const Pagination = ({ limit, total, offset, setOffset}) => {
                 onPageChange(current - 1)}
                 disabled={current === 1}
               >
-                Anterior
+                <img src={Prev} alt="" />
               </button>
             </div>
             {Array.from({ length: MAX_ITEMS})
@@ -46,7 +49,7 @@ const Pagination = ({ limit, total, offset, setOffset}) => {
                 onPageChange(current + 1)}
                 disabled={current === pages}
               >
-                Próxima
+                <img src={Next} alt="" />
               </button>
             </div>
           </ul>
