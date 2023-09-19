@@ -7,9 +7,11 @@ import useApi from '../../helpers/OlxAPI';
 
 import { PageContainer } from '../../components/MainComponents';
 import AdItem from "../../components/partials/AdItem";
+import { isLogged } from "../../helpers/authHandler";
 
 const Page = () => {
   const api = useApi();
+  const logged = isLogged();
 
   const { id } = useParams();
   //alert("ID :"+id);
@@ -85,6 +87,11 @@ const Page = () => {
                   <small>Visualizações: {adInfo.views}</small>
                 }
               </div>
+              {logged &&
+                <div className="logado">
+                  <Link to="/post-an-up">Editar anúncio</Link>
+                </div>
+              }
             </div>
           </div>
         </div>
