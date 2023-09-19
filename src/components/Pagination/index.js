@@ -21,7 +21,7 @@ const Pagination = ({ limit, total, offset, setOffset}) => {
     <PageContainer>
       <PageArea>
         
-          <ul className="pagination">
+          <ul className="paginationPg">
             <div className="preview">
               <button 
                 onClick={() => 

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const PageArea = styled.div`
 
-.pagination {
+.paginationPg {
   display: flex;
   list-style: none;
 

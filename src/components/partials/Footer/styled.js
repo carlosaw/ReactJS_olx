@@ -2,13 +2,12 @@ import styled from 'styled-components';
 
 export const FooterArea = styled.div`
     height:100px;
-    background-color:#CCC;
     display: flex;
     justify-content: center;
     align-items: center;
-
-    .footer {
-        font-size: 20px;
-        color: #999;
-    }
+    text-align: center;
+    color: #999;
+    font-size: 14px;
+    margin-top: 20px;
+    border-top: 2px solid #CCC;
 `;
