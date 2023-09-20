@@ -45,6 +45,10 @@ export const HeaderArea = styled.div`
       display: flex;
       align-items: center;
       height: 40px;
+
+      .mylogout {
+        display: flex;
+      }
     }
     li {
       margin-left: 20px;
