@@ -11,6 +11,7 @@ import AdPage from './pages/AdPage';
 import AddAd from './pages/AddAd';
 import AdUpdate from './pages/AdUpdate'
 import Ads from './pages/Ads';
+import MyAcount from './pages/MyAcount';
 
 export default () => {
   return (
@@ -35,6 +36,9 @@ export default () => {
       </RouteHandler>
       <RouteHandler private exact path="/post-an-up">
         <AdUpdate />
+      </RouteHandler>
+      <RouteHandler private exact path="/my-account">
+        <MyAcount />
       </RouteHandler>
       <RouteHandler exact path="/ads">
         <Ads />
