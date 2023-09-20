@@ -4,7 +4,7 @@ import { PageContainer } from '../../components/MainComponents';
 import Next from '../../assets/images/arrowNext.png';
 import Prev from '../../assets/images/arrowPrev.png';
 
-const MAX_ITEMS = 9;
+const MAX_ITEMS = 5;
 const MAX_LEFT = (MAX_ITEMS - 1) / 2;
 
 const Pagination = ({ limit, total, offset, setOffset}) => {

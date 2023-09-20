@@ -22,17 +22,20 @@ const Header = () => {
             <span className='logo-3'> - Classificados</span>
           </Link>
         </div>
+
         <nav>
           <ul>
-
             {logged &&
               <>
-                <li>
+              <div className='mylogout'>
+              <li>
                   <Link to="/my-account">Minha conta</Link>
                 </li>
                 <li>
                   <button onClick={handleLogout}>Sair</button>
                 </li>
+              </div>
+                
                 <li>
                   <Link to="/post-an-ad" className="button">Poste um anúncio</Link>
                 </li>
@@ -52,9 +55,9 @@ const Header = () => {
                 </li>
               </>
             }
-
           </ul>
         </nav>
+
       </div>
     </HeaderArea>
   );

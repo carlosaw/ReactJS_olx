@@ -10,4 +10,8 @@ export const FooterArea = styled.div`
     font-size: 14px;
     margin-top: 20px;
     border-top: 2px solid #CCC;
+
+    @media(max-width:600px) {
+        margin-top: 0px;
+    }
 `;

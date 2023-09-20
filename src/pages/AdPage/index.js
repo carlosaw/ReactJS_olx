@@ -126,7 +126,9 @@ const Page = () => {
         <OthersArea>
           {adInfo.others &&
             <>
-              <h2>Outras ofertas do vendedor</h2>
+              <div className="others">
+                <h2>Outras ofertas do vendedor</h2>
+              </div>
               <div className="list">
                 {adInfo.others.map((i,k) => 
                   <AdItem key={k} data={i} />

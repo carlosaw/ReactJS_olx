@@ -70,7 +70,10 @@ const Page = () => {
       </SearchArea>
       <PageContainer>
         <PageArea>
-          <h2>Anúncios recentes</h2>
+          <div className="recentsAds">
+            <h2>Anúncios recentes</h2>
+          </div>
+          
           <div className="list">
             {adList.map((i, k) => 
               <AdItem key={k} data={i} />
