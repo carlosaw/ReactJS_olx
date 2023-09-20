@@ -160,7 +160,7 @@ const Page = () => {
           </div>
           
           {adsTotal &&
-            <div  className="paginationAds">
+            <div  className="paginationPg">
               <Pagination 
                 limit={LIMIT} 
                 total={setAdsTotal} 

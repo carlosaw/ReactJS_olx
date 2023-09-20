@@ -105,8 +105,6 @@ margin-top:20px;
       .list .aditem {
         width: 50%;
       }
-    }
-
-    
+    }    
   }
 `;

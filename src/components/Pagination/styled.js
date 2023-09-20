@@ -2,94 +2,65 @@ import styled from 'styled-components';
 
 export const PageArea = styled.div`
 
-.paginationPg {
-  display: flex;
-  list-style: none;
-
-  .active {
-    border-bottom: 2px solid green;
-  }
-
-  .preview,
-  .next {    
-    button {
-      height: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #EEE;
-      cursor: pointer;
-      border: 0;
-      color: #333;
-      border-radius: 3px;
-
-      img {
-        width: 12px;
-        opacity: 0.5;
-        margin: 0px 10px;
-      }
-      
-      &:hover {
-        background-color: #dbdbdb;
-      }
-    }   
-  }
-
-  li {
-    margin: 0px 5px;
-
-    button {
-      width: 30px;
-      height: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #EEE;
-      cursor: pointer;
-      border: 0;
-      color: #333;
-      font-size: 15px;
-
-      &:hover {
-        background-color: #dbdbdb;
-      }
-    }
-  }
-}
-
-  /* .listPage {
+  .paginationPg {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    list-style: none;
 
     .active {
-      border-color: green;
+      border-bottom: 2px solid green;
     }
 
-    ul {
-      display: flex;
-      list-style: none;
+    .preview,
+    .next {    
+      button {
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #EEE;
+        cursor: pointer;
+        border: 0;
+        color: #333;
+        border-radius: 3px;
 
-      li {
-        margin-left: 1rem;
+        img {
+          width: 12px;
+          opacity: 0.5;
+          margin: 0px 10px;
+        }
+        
+        &:hover {
+          background-color: #dbdbdb;
+        }
+          @media(max-width:600px) {
+          margin: 10px 0px;
+        }
+      }   
+    }
 
-        button {
-          width: 30px;
-          height: 30px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background-color: #EEE;
-          cursor: pointer;
-          border: 1px solid #CCC;
-          color: #333;
+    li {
+      margin: 0px 5px;
+      
+      @media(max-width:600px) {
+        margin: 10px 0px;
+      }
 
-          &:hover {
-            border: 1px solid green;
-          }
-        }      
+      button {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #EEE;
+        cursor: pointer;
+        border: 0;
+        color: #333;
+        font-size: 15px;
+
+        &:hover {
+          background-color: #dbdbdb;
+        }
       }
     }
-  } */
-  
+  } 
 `;
