@@ -1,9 +1,13 @@
-### Projeto Olx-frontend
-## node v16.16.0
+## Projeto clone do OLX
 
-### Install dependencies
-## npm install
+Projeto desenvolvido durante o curso [B7web](https://b7web.com.br)
 
-### Run project
-`npm start` 
-[http://localhost:3000]
+
+## homepage
+[vercel](https://react-js-olx.vercel.app/)
+
+### Instalação
+- `npm install`
+
+### Rodar projeto
+- `npm start`
